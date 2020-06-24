@@ -1,0 +1,3 @@
+lesson :  Математика
+hours :  3
+teacher :  Мат

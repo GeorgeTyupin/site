@@ -1,0 +1,94 @@
+.top_2 {
+	padding-top: 5px;
+}
+
+#reg {
+	font-family: Arial;
+	font-size: 17px;
+	color: white;
+	align-content: center;
+}
+
+#reg_1 {
+	font-family: Arial;
+	font-size: 17px;
+	color: white;
+	align-content: center;
+	padding-left: 100px;
+	padding-right: 20px;
+}
+
+.col {
+    
+    width: 100px;
+    height: 100px;
+    
+}
+
+.indent_1 {
+	padding-top: 40px;
+}
+
+.indent_2 {
+	padding-top: 40px;
+}
+
+.place {
+	/*margin-left: 300px;*/ 
+	background-color: #7109AA; /* #494A51*/; 
+	border-radius: 30px; 
+    width: 450px;
+	margin-top: 200px;
+	border-radius: 30px; 
+	align-content: center;
+}
+
+.inp {
+	background-color: white; 
+	border-radius: 5px; 
+    width: 250px;
+    height: 35px;
+    margin-left: 40px;
+    margin-top: 19px;
+    border-radius: 9px; 
+    
+}
+
+#subm {
+	color: white;
+	font-size: 15px;
+	font-family: Arial;
+	margin-bottom: 35px;
+	background-color: #B12D78;
+	margin-left: 150px;
+	width: 200px;
+	height: 39px;
+	border: 0px;
+	border-radius: 9px;
+	margin-top: 40px;
+
+}
+
+#log {
+	font-family: Arial;
+	margin-top: 10px;
+	font-size: 24px;
+
+}
+
+.reg1 {
+	height: 40px;
+}
+
+.hidden {
+	display: none;
+}
+
+.log_text {
+	padding-top: 18px;
+	font-family: 'Roboto', sans-serif;
+	font-size: 28px;
+	color: white;
+	width: 145px;
+	padding-left: 25px;
+}
