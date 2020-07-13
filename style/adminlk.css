@@ -92,3 +92,25 @@
 	width: 145px;
 	padding-left: 25px;
 }
+
+.menu {
+	width: 215.89px;
+	min-height: 100%;
+	background: #7109AA;
+}
+
+.menu_class_text {
+	font-family: 'Roboto', sans-serif;
+	font-size: 25px;
+	color: #FFE9EA;
+	margin-left: 15px;
+}
+
+.menu_class-1 {
+	width: 75px;
+	height: 41px;
+	margin-left: 23px;
+	background-color: #D52388;
+	border-radius: 17px;
+	margin-top: 20px;
+}

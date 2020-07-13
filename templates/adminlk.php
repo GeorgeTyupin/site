@@ -10,6 +10,20 @@
 </head>
 <body>
 
+<div class="menu">
+    <div class="menu_class-1">
+        <p class="menu_class_text">1-A</p>
+    </div>
+
+    <div class="menu_class-1" style="margin-top: 81px;">
+        <p class="menu_class_text">2-A</p>
+    </div>
+
+    <div class="menu_class-1" style="margin-top: 142px;">
+        <p class="menu_class_text">3-A</p>
+    </div>
+</div>
+
 <form action='index.php' method='POST'>
 <div class="container">
 <div class="row">
