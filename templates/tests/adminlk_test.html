@@ -157,7 +157,7 @@
     <div class="prev">
         <div class="max_class">
             <div class="row">
-                <div class="triangle-right" id="button"></div>
+                <div class="triangle-right button"></div>
                 <h1 class="class_number">1-А</h1>
             </div>
 
@@ -177,14 +177,14 @@
 
         <div class="med_class">
             <div class="row">
-                <div class="triangle-right" id="button"></div>
+                <div class="triangle-right button"></div>
                 <h1 class="class_number">2-А</h1>
             </div>
 
             <div id= "layer" class="row">
                 <div class="col-2 days">Понедельник</div>
                 <div class="col-10 rasp">
-                    <div class="triangle-right_2"></div>
+                    <div class="triangle-right_2 button"></div>
                     <div class="add_lesson_mid">
                         <div class="btn">+</div>
                     </div>
@@ -195,7 +195,7 @@
 
         <div class="roll_class">
             <div class="row">
-                <div class="triangle-right"></div>
+                <div class="triangle-right button"></div>
                 <h1 class="class_number">3-А</h1>
             </div>
         </div>
@@ -207,14 +207,21 @@
 
     /*$(document).ready( () => {
         $("#layer").slideToggle(250 );
-        a = $("#button").css("transform");
+        a = $(".button").css("transform");
         console.log(a)
     })*/
      
-
-    $("#button").click(function () {
-      $("#layer").slideToggle("slow" , () => { $("#button").css("transform" , "rotate(90deg)")  } );
-    });
+    $('.button').map((val, i) => {
+        console.log(val);
+        $(i).click(function () {
+        layer = $(this).parent().parent().children()[1]
+        q = getComputedStyle(this)["transform"]
+        rotate = "rotate(90deg)"
+        if (q == "matrix(0, 1, -1, 0, 0, 0)" || q == "none"){
+            rotate = "rotate(0deg)"
+        }
+        $(layer).slideToggle("slow" , () => { $(this).css("transform" , rotate)  } );
+    });})
 </script>
 </body>
 </html>
