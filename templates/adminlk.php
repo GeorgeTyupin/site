@@ -10,41 +10,32 @@
 </head>
 <body>
 
-<div class="menu">
-    <div class="menu_class-1">
-        <p class="menu_class_text">1-A</p>
-    </div>
-
-    <div class="menu_class-1" style="margin-top: 81px;">
-        <p class="menu_class_text">2-A</p>
-    </div>
-
-    <div class="menu_class-1" style="margin-top: 142px;">
-        <p class="menu_class_text">3-A</p>
-    </div>
-</div>
-
-<form action='index.php' method='POST'>
-<div class="container">
 <div class="row">
-    <div class="col-3"></div>
-    <div class="col"></div>
-    <div class="col">Информация</div>
-    <div class="col">
-    <input type="submit">
+
+    <div class="col-1">
+
+        <div class="menu">
+            <div class="menu_class-1">
+                <p class="menu_class_text">1-A</p>
+            </div>
+
+            <div class="menu_class-1">
+                <p class="menu_class_text">2-A</p>
+            </div>
+
+            <div class="menu_class-1">
+                <p class="menu_class_text">3-A</p>
+            </div>
+        </div>
+
     </div>
-    <div class="col-3"></div>
+    
+    <div class="prev">
+        
+    </div>
+    
+    <div class="col"><button class="new_class"></button></div>
 </div>
-
-<div class="row add">
-    <div class="col-3"></div>
-    <div class="col">+</div>
-    <div class="col-8"></div>
-</div>
-</div>
-
-
-</form>
 <script src='../js/adminlk.js'></script>
 
 </body>
