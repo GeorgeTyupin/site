@@ -69,9 +69,7 @@
 						}
 					?>
 				</p>
-					</div>
-					<div class="col-2"></div>
-				</div>
+				<div class="col-2"></div>
 			</form>
 		</div>
 		<!--<input type="submit" class="inp" id="subm">-->
@@ -79,5 +77,4 @@
 </div>
 
 <div class="col-4"></div>
-</div>
 <script src="js/registration.js"></script>

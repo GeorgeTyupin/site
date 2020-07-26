@@ -52,23 +52,17 @@ function setEvent() {
 
 function newClass(){
     document.querySelector(".new_class").addEventListener('click', function CreateClass(){
-        $('.prev').append('<div class="roll_class"><div class="row"><div class="triangle-right button"></div><h1 class="class_number">3-А</h1></div></div>');
+        $('.prev').append('<div class="roll_class"></div>');
+        $('.roll_class').append('<div class="row day_content"></div>');
+        $('day_content').append('<div class="triangle-right button"></div>');
+        $('day_content').append('<h1 class="class_number">3-А</h1>');
     }); 
 
 }
 
-function CreateNewDay(current_form){
-    form = document.querySelector(".day_pre")
-    new_form = form.cloneNode(deep=true)
-    new_form.classList.remove('disabled')
-    new_form.classList.remove('day_pre')
-    console.log(new_form)
-    current_form.appendChild(new_form)
-
-}
-
-function main() {
+function main(){
     setEvent();
+    newClass();
 }
 
 main();
