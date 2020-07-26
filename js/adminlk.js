@@ -60,7 +60,7 @@ function newClass(){
 
 }
 
-function main(){
+function main() {
     setEvent();
     newClass();
 }
