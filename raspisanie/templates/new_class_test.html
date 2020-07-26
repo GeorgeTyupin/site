@@ -1,0 +1,51 @@
+<meta charset="utf-8">
+<style>
+    .disabled{
+        display: none;
+    }
+</style>
+
+<button onclick="CreateFormClass()">Создать новый класс</button>
+
+
+<div class="newclass">
+
+</div>
+
+<form action="script.php" class="disabled form form_pre">
+
+    <label for="">Название класса</label>
+    <input type="text">
+    <a onclick="CreateNewDay(this.parentNode)">Создать новый день</a>
+    <button type="submit">Сохранить</button>
+    
+</form>
+
+<div class="disabled day day_pre">
+	<label for="">Урок 1</label>
+    <input type="text">
+    <button>Создать новый урок</button>
+</div>
+
+<script>
+
+    function CreateFormClass(){
+        form = document.querySelector(".form_pre")
+        new_form = form.cloneNode(deep=true)
+        new_form.classList.remove('disabled')
+        new_form.classList.remove('form_pre')
+        console.log(new_form)
+        document.querySelector(".newclass").appendChild(new_form)
+
+    }
+
+    function CreateNewDay(current_form){
+        form = document.querySelector(".day_pre")
+        new_form = form.cloneNode(deep=true)
+        new_form.classList.remove('disabled')
+        new_form.classList.remove('day_pre')
+        console.log(new_form)
+        current_form.appendChild(new_form)
+
+    }
+</script>
