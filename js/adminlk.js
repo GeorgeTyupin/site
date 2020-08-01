@@ -40,7 +40,7 @@ function addRow () {
     row.appendChild(div);
 
 }
-
+/*
 function setEvent() {
     let add = document.querySelector('.add').childNodes[3];
     add.addEventListener('click' , () => { 
@@ -49,9 +49,9 @@ function setEvent() {
     
 
 }
-
+*/
 function newClass(){
-    document.querySelector(".new_class").addEventListener('click', function CreateClass(){
+    document.querySelector(".new_class").addEventListener('click', () => {
         $('.prev').append('<div class="roll_class"></div>');
         $('.roll_class').append('<div class="row day_content"></div>');
         $('day_content').append('<div class="triangle-right button"></div>');
@@ -61,7 +61,7 @@ function newClass(){
 }
 
 function main() {
-    setEvent();
+    //setEvent();
     newClass();
 }
 
