@@ -50,14 +50,45 @@ function setEvent() {
 
 }
 */
+
+days = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"];
+
 function newClass(){
     document.querySelector(".new_class").addEventListener('click', () => {
+
         $('.prev').append('<div class="roll_class"></div>');
-        $('.roll_class').append('<div class="row day_content"></div>');
-        $('day_content').append('<div class="triangle-right button"></div>');
-        $('day_content').append('<h1 class="class_number">3-А</h1>');
+        temp = $('.roll_class');
+        temp = temp[temp.length - 1];
+        $(temp).append('<div class="row"></div>');
+        $(temp).append('<div class="class_content row"></div>');
+        sub_temp = $(temp).children()[0];
+        console.log(temp);
+        $(sub_temp).append('<div class="triangle-right button"></div>');
+        $(sub_temp).append('<input type="text" class="class_number">');
+        $(sub_temp).append('<button  class="submit" onclick="saveData()">Сохранить</button>');
+        $(sub_temp).children()[0].addEventListener('click' , (event) => {
+            elem = event.target.parentNode.parentNode;
+            elem = $(elem).children()[1];
+            count = $(elem).children().length / 2;
+            if (count == days.length) {
+                alert("учебные дни закончились");
+                return;
+            }
+
+            $(elem).append('<div class="col-2 days">' + days[count] +'</div>');
+            $(elem).append('<div class="col-10 rasp">');
+            rasp = $(elem).children();
+            rasp = rasp[rasp.length - 1];
+            $(rasp).append('<div class="triangle-right_2 button"></div>');
+            $(rasp).append('<div class="add_lesson_mid"><div class="btn">+</div></div>');
+
+        });
     }); 
 
+}
+
+function saveData() {
+    console.log(this);
 }
 
 function main() {
