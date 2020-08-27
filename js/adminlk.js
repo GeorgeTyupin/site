@@ -55,7 +55,6 @@ days = ["Понедельник", "Вторник", "Среда", "Четвер�
 
 function newClass(){
     document.querySelector(".new_class").addEventListener('click', () => {
-
         $('.prev').append('<div class="roll_class"></div>');
         temp = $('.roll_class');
         temp = temp[temp.length - 1];
@@ -87,6 +86,13 @@ function newClass(){
 
 }
 
+function newLesson() {
+    $(".btn").click(() => {
+        console.log('hey');
+        $('rasp').append('<input type="text" name="" id="" class="less">');
+    });
+}
+
 function saveData() {
     console.log(this);
 }
@@ -94,6 +100,7 @@ function saveData() {
 function main() {
     //setEvent();
     newClass();
+    newLesson();
 }
 
 main();

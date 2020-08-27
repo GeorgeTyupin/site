@@ -18,7 +18,6 @@
 <div class="row">
 
     <div class="col-1">
-
         <div class="menu">
             <div class="menu_class-1">
                 <p class="menu_class_text">1-A</p>
@@ -32,7 +31,6 @@
                 <p class="menu_class_text">3-A</p>
             </div>
         </div>
-
     </div>
     
     <div class="col">
