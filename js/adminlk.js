@@ -61,10 +61,9 @@ function newClass(){
         $(temp).append('<div class="row"></div>');
         $(temp).append('<div class="class_content row"></div>');
         sub_temp = $(temp).children()[0];
-        console.log(temp);
         $(sub_temp).append('<div class="triangle-right button"></div>');
         $(sub_temp).append('<input type="text" class="class_number">');
-        $(sub_temp).append('<button  class="submit" onclick="saveData()">Сохранить</button>');
+        $(sub_temp).append('<button  class="submit" onclick="saveClass()">Сохранить</button>');
         $(sub_temp).children()[0].addEventListener('click' , (event) => {
             elem = event.target.parentNode.parentNode;
             elem = $(elem).children()[1];
@@ -73,14 +72,15 @@ function newClass(){
                 alert("учебные дни закончились");
                 return;
             }
-
             $(elem).append('<div class="col-2 days">' + days[count] +'</div>');
             $(elem).append('<div class="col-10 rasp">');
             rasp = $(elem).children();
             rasp = rasp[rasp.length - 1];
             $(rasp).append('<div class="triangle-right_2 button"></div>');
             $(rasp).append('<div class="add_lesson_mid"><div class="btn">+</div></div>');
-
+            $($(rasp).children()[1]).children()[0].addEventListener('click', () => {
+                $($(rasp).children()[1]).before('<input type="text" name="" id="" class="less">');
+            });
         });
     }); 
 
@@ -93,9 +93,29 @@ function newLesson() {
     });
 }
 
-function saveData() {
-    console.log(this);
+function saveClass() {
+    contain = event.target.parentNode.parentNode;
+    // console.log($($(contain).children()[1]).children());
+    temp_days = $($(contain).children()[1]).children();
+    data_days = {};
+    console.log(temp_days);
+    for (var i = 0; i < temp_days.length; i+=2) {
+
+        //[дети rasp]
+        x =  $(temp_days[i+1]).children();
+        x = x.slice(1 , x.length);
+        a = [];
+        // { "Понедльник" : [днти с 1 до предп] }
+        data_days[temp_days[i].innerText] = $(x).each(function(index, value) {
+            console.log(index);
+            a.push(value.value);
+
+        });
+        console.log('h')
+    }
+    console.log(data_days);
 }
+
 
 function main() {
     //setEvent();
