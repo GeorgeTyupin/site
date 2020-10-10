@@ -78,44 +78,61 @@ function newClass(){
             rasp = rasp[rasp.length - 1];
             $(rasp).append('<div class="triangle-right_2 button"></div>');
             $(rasp).append('<div class="add_lesson_mid"><div class="btn">+</div></div>');
-            $($(rasp).children()[1]).children()[0].addEventListener('click', () => {
+            $($(rasp).children()[1]).children()[0].addEventListener('click', newLesson);
+            /*$($(rasp).children()[1]).children()[0].addEventListener('click', () => {
                 $($(rasp).children()[1]).before('<input type="text" name="" id="" class="less">');
-            });
+            });*/
         });
     }); 
 
 }
 
 function newLesson() {
-    $(".btn").click(() => {
-        console.log('hey');
-        $('rasp').append('<input type="text" name="" id="" class="less">');
-    });
+    $(this.parentNode).before('<input type="text" name="" id="" class="less">');
 }
 
 function saveClass() {
     contain = event.target.parentNode.parentNode;
-    // console.log($($(contain).children()[1]).children());
-    temp_days = $($(contain).children()[1]).children();
-    data_days = {};
-    console.log(temp_days);
-    for (var i = 0; i < temp_days.length; i+=2) {
+    console.log(contain);
+    data_class = {};
+    /* шаблон класса
+    [ 
+    class : {
+        name : '';
+        week : [
+            day : {
+                name : '';
+                lesson : [];
+                }
+            ]
+        }
+    ]
+    */
+    //Получаем названия класса
+    data_class.name = contain.querySelector('.class_number').value;
 
-        //[дети rasp]
-        x =  $(temp_days[i+1]).children();
-        x = x.slice(1 , x.length);
-        a = [];
-        // { "Понедльник" : [днти с 1 до предп] }
-        data_days[temp_days[i].innerText] = $(x).each(function(index, value) {
-            console.log(index);
-            a.push(value.value);
+    //Получаем названия дней
+    data_class.week = []
+    name_days = contain.querySelectorAll('.days')
+    name_days.forEach(elem => {
+                data_class.week.push({name:elem.innerText})
+    });
 
+    //Получаем уроки    
+    for ( i = 0; i < data_class.week.length; i++) {
+        data_class.week[i].lesson = []
+        lessons_input = contain.querySelectorAll(".rasp")[i].querySelectorAll("input")
+
+        lessons_input.forEach(elem => {
+            data_class.week[i].lesson.push(elem.value)
         });
-        console.log('h')
     }
-    console.log(data_days);
+    sendData(data_class);
 }
 
+function sendData() {
+    $.post("/inputData.php" , {"data" : data});
+}
 
 function main() {
     //setEvent();
