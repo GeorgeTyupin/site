@@ -1,44 +1,44 @@
 function addRow () {
     contein = document.querySelector('.container');
-
+ 
     plc = [
         'учитель' ,
         'кол-во часов' ,
         'предмет'
     ]
-
+ 
     attr = [
         'teacher',
         'h/w',
         'subject',
         'class' 
     ]
-
+ 
     // Создаем row (линия с информацией)
     row = document.createElement('div');
     row.classList.add ('row');
     contein.appendChild(row);
     row.name = attr.pop();
-
+ 
     div = document.createElement('div');
     div.classList.add ('col-3');
     row.appendChild(div);
-
+ 
     for (i=0;i<3;i++) {
         div = document.createElement('div');
         div.classList.add ('col');
         row.appendChild(div);
-        
+ 
         inp = document.createElement('input');
         div.appendChild(inp);
         inp.placeholder  = plc.pop();
         inp.name = attr.pop();
     }
-
+ 
     div = document.createElement('div');
     div.classList.add ('col-3');
     row.appendChild(div);
-
+ 
 }
 /*
 function setEvent() {
@@ -46,13 +46,13 @@ function setEvent() {
     add.addEventListener('click' , () => { 
         addRow();
     })
-    
-
+ 
+ 
 }
 */
-
+ 
 days = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"];
-
+ 
 function newClass(){
     document.querySelector(".new_class").addEventListener('click', () => {
         $('.prev').append('<div class="roll_class"></div>');
@@ -84,13 +84,13 @@ function newClass(){
             });*/
         });
     }); 
-
+ 
 }
-
+ 
 function newLesson() {
     $(this.parentNode).before('<input type="text" name="" id="" class="less">');
 }
-
+ 
 function saveClass() {
     contain = event.target.parentNode.parentNode;
     console.log(contain);
@@ -110,34 +110,68 @@ function saveClass() {
     */
     //Получаем названия класса
     data_class.name = contain.querySelector('.class_number').value;
-
+ 
     //Получаем названия дней
     data_class.week = []
     name_days = contain.querySelectorAll('.days')
     name_days.forEach(elem => {
                 data_class.week.push({name:elem.innerText})
     });
-
+ 
     //Получаем уроки    
     for ( i = 0; i < data_class.week.length; i++) {
         data_class.week[i].lesson = []
         lessons_input = contain.querySelectorAll(".rasp")[i].querySelectorAll("input")
-
+ 
         lessons_input.forEach(elem => {
             data_class.week[i].lesson.push(elem.value)
         });
     }
     sendData(data_class);
 }
-
-function sendData() {
-    $.post("/inputData.php" , {"data" : data});
+ 
+//Создание превью класса
+function createMinClass(name){
+    $('.prev').append('<div class="roll_class"></div>');
+    temp = $('.roll_class');
+    temp = temp[temp.length - 1];
+    $(temp).append('<div class="row"></div>');
+    $(temp).append('<div class="class_content row"></div>');
+    sub_temp = $(temp).children()[0];
+    $(sub_temp).append('<div class="triangle-right button"></div>');
+    $(sub_temp).append(`<input type="text" class="class_number" value=${name}>`);
+    $(sub_temp).append('<button  class="submit" onclick="saveClass()">Сохранить</button>');
 }
-
+ 
+//Отладка для ответа отправки данных
+function success(response){
+    console.log(response)
+}
+ 
+function sendData(data) {
+    $.post("inputData.php", {data : data},success = success)
+}
+//первый рендер странички превью классов
+function renderFirst(response){
+    console.log("рендер")
+    response = JSON.parse(response)
+    console.log(response[0])
+ 
+    //рендер по спику имен классов
+    response.forEach(elem => {
+        createMinClass(elem)
+    })
+}
+ 
+function loadData(){
+    $.post("loadData.php" , success = renderFirst)
+}
+ 
 function main() {
     //setEvent();
+    loadData();
     newClass();
-    newLesson();
+    newLesson();   
 }
-
+ 
 main();
