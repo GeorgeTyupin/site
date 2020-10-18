@@ -145,26 +145,26 @@ function createMinClass(name){
  
 //Отладка для ответа отправки данных
 function success(response){
-    console.log(response)
+    console.log(response);
 }
  
 function sendData(data) {
-    $.post("inputData.php", {data : data},success = success)
+    $.post("inputData.php", {data : data},success = success);
 }
 //первый рендер странички превью классов
 function renderFirst(response){
-    console.log("рендер")
-    response = JSON.parse(response)
-    console.log(response[0])
+    console.log("рендер");
+    response = JSON.parse(response);
+    console.log(response[0]);
  
     //рендер по спику имен классов
     response.forEach(elem => {
-        createMinClass(elem)
+        createMinClass(elem);
     })
 }
  
 function loadData(){
-    $.post("loadData.php" , success = renderFirst)
+    $.post("loadData.php" , success = renderFirst);
 }
  
 function main() {
