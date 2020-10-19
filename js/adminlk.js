@@ -156,11 +156,15 @@ function renderFirst(response){
     console.log("рендер");
     response = JSON.parse(response);
     console.log(response[0]);
- 
+
     //рендер по спику имен классов
     response.forEach(elem => {
+        str = elem.slice(-5);
+        console.log(elem);
+        elem = elem.substr(0, elem.length - str.length);
+        console.log(elem);
         createMinClass(elem);
-    })
+    });
 }
  
 function loadData(){
