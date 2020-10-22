@@ -142,6 +142,14 @@ function createMinClass(name){
     $(sub_temp).append(`<input type="text" class="class_number" value=${name}>`);
     $(sub_temp).append('<button  class="submit" onclick="saveClass()">Сохранить</button>');
 }
+
+function createMenuElem(name){
+    name.forEach(elem => {
+        console.log(elem);
+        $('.menu').append('<div class="menu_class-1"></div>');
+        $('.menu_class-1').append(`<p class="menu_class_text">${elem}</p>`);
+    });
+}
  
 //Отладка для ответа отправки данных
 function success(response){
@@ -155,16 +163,15 @@ function sendData(data) {
 function renderFirst(response){
     console.log("рендер");
     response = JSON.parse(response);
-    console.log(response[0]);
-
+    classes_name = [];
     //рендер по спику имен классов
     response.forEach(elem => {
         str = elem.slice(-5);
-        console.log(elem);
         elem = elem.substr(0, elem.length - str.length);
-        console.log(elem);
+        classes_name.push(elem);
         createMinClass(elem);
     });
+    createMenuElem(classes_name);
 }
  
 function loadData(){
