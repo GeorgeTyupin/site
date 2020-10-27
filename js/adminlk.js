@@ -53,7 +53,9 @@ function setEvent() {
  
 days = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"];
  
+//cоздаем класс
 function newClass(){
+    //создаем сам класс по нажатию на кнопку
     document.querySelector(".new_class").addEventListener('click', () => {
         $('.prev').append('<div class="roll_class"></div>');
         temp = $('.roll_class');
@@ -64,6 +66,7 @@ function newClass(){
         $(sub_temp).append('<div class="triangle-right button"></div>');
         $(sub_temp).append('<input type="text" class="class_number">');
         $(sub_temp).append('<button  class="submit" onclick="saveClass()">Сохранить</button>');
+        //создаём дни недели по нажатию на кнопку
         $(sub_temp).children()[0].addEventListener('click' , (event) => {
             elem = event.target.parentNode.parentNode;
             elem = $(elem).children()[1];
@@ -87,10 +90,12 @@ function newClass(){
  
 }
  
+//добавляем урок
 function newLesson() {
     $(this.parentNode).before('<input type="text" name="" id="" class="less">');
 }
- 
+
+//собираем данные и формируем массив для отправки на сервер
 function saveClass() {
     contain = event.target.parentNode.parentNode;
     console.log(contain);
@@ -143,6 +148,7 @@ function createMinClass(name){
     $(sub_temp).append('<button  class="submit" onclick="saveClass()">Сохранить</button>');
 }
 
+//создание блока с названием класса в боковое меню
 function createMenuElem(classes){
     classes.forEach(elem => {
         console.log(elem);
@@ -154,7 +160,7 @@ function createMenuElem(classes){
 function success(response){
     console.log(response);
 }
- 
+ //сохраниение классов
 function sendData(data) {
     $.post("inputData.php", {data : data}, success = success);
 }
@@ -177,6 +183,7 @@ function renderFirst(response){
     $(".triangle-right").bind('click', secondLoadData);
 }
 
+//рендеринг расписания
 function renderSecond(response){
     response = JSON.parse(response);
     if(!response){
@@ -186,11 +193,13 @@ function renderSecond(response){
     console.log(class_rasp)
 }
 
+//получение с сервера структуры классов
 function secondLoadData() {
     data = this.parentNode.querySelector('.class_number').value
     $.get("secondLoadData.php", {data : data}, success = renderSecond);
 }
 
+//получение с сервера названий классов
 function firstLoadData(){
     $.post("firstLoadData.php" , success = renderFirst);
 }
