@@ -143,11 +143,10 @@ function createMinClass(name){
     $(sub_temp).append('<button  class="submit" onclick="saveClass()">Сохранить</button>');
 }
 
-function createMenuElem(name){
-    name.forEach(elem => {
+function createMenuElem(classes){
+    classes.forEach(elem => {
         console.log(elem);
-        $('.menu').append('<div class="menu_class-1"></div>');
-        $('.menu_class-1').append(`<p class="menu_class_text">${elem}</p>`);
+        $('.menu').append(`<div class="menu_class-1">${elem}</div>`);
     });
 }
  
@@ -157,12 +156,15 @@ function success(response){
 }
  
 function sendData(data) {
-    $.post("inputData.php", {data : data},success = success);
+    $.post("inputData.php", {data : data}, success = success);
 }
 //первый рендер странички превью классов
 function renderFirst(response){
     console.log("рендер");
     response = JSON.parse(response);
+    if(!response){
+        return
+    }
     classes_name = [];
     //рендер по спику имен классов
     response.forEach(elem => {
@@ -172,15 +174,30 @@ function renderFirst(response){
         createMinClass(elem);
     });
     createMenuElem(classes_name);
+    $(".triangle-right").bind('click', secondLoadData);
 }
- 
-function loadData(){
-    $.post("loadData.php" , success = renderFirst);
+
+function renderSecond(response){
+    response = JSON.parse(response);
+    if(!response){
+        return
+    }
+    class_rasp = $(`input[value=${response['name']}]`).parent().parent();  
+    console.log(class_rasp)
+}
+
+function secondLoadData() {
+    data = this.parentNode.querySelector('.class_number').value
+    $.get("secondLoadData.php", {data : data}, success = renderSecond);
+}
+
+function firstLoadData(){
+    $.post("firstLoadData.php" , success = renderFirst);
 }
  
 function main() {
     //setEvent();
-    loadData();
+    firstLoadData();
     newClass();
     newLesson();   
 }
