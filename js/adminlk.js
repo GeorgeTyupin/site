@@ -190,7 +190,12 @@ function renderSecond(response){
         return
     }
     class_rasp = $(`input[value=${response['name']}]`).parent().parent();  
-    console.log(class_rasp)
+    days.forEach(elem => {
+        console.log(elem)
+        $(class_rasp).children()[1].append(`<div class="col-2 days">${elem}</div>`);
+    });
+    //$($(class_rasp).children()[1]).append('<div class="col-2 days">Понедельник</div>');
+    
 }
 
 //получение с сервера структуры классов
