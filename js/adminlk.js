@@ -148,6 +148,21 @@ function createMinClass(name){
     $(sub_temp).append('<button  class="submit" onclick="saveClass()">Сохранить</button>');
 }
 
+//проверка открыто ли закрыто расписание у класса
+function chekingOpenClass(event) {
+    if (event.target.classList.contains('open') == false || event.target.classList.contains('close') == false) {
+        secondLoadData(event.target);
+        event.target.classList.add('open');
+        console.log(event.target.classList);
+    }
+    else if (event.target.classList.contains('open') == false && event.target.classList.contains('close') == true) {
+        //здесь должен быть вызов функции, которя будет разворачивать расписание
+    }
+    else if (event.target.classList.contains('open') == true && event.target.classList.contains('close') == false) {
+        //здесь должен быть вызов функции, которя будет сворачивать расписание
+    }
+}
+
 //создание блока с названием класса в боковое меню
 function createMenuElem(classes){
     classes.forEach(elem => {
@@ -180,7 +195,8 @@ function renderFirst(response){
         createMinClass(elem);
     });
     createMenuElem(classes_name);
-    $(".triangle-right").bind('click', secondLoadData);
+    //Вызов функции проверяющей открыто ли наше расписание
+    $(".triangle-right").bind('click', chekingOpenClass);
 }
 
 //рендеринг расписания
@@ -192,15 +208,15 @@ function renderSecond(response){
     class_rasp = $(`input[value=${response['name']}]`).parent().parent();  
     days.forEach(elem => {
         console.log(elem)
-        $(class_rasp).children()[1].append(`<div class="col-2 days">${elem}</div>`);
+        $($(class_rasp).children()[1]).append(`<div class="col-2 days">${elem}</div>`);
     });
     //$($(class_rasp).children()[1]).append('<div class="col-2 days">Понедельник</div>');
     
 }
 
 //получение с сервера структуры классов
-function secondLoadData() {
-    data = this.parentNode.querySelector('.class_number').value
+function secondLoadData(temp) {
+    data = temp.parentNode.querySelector('.class_number').value
     $.get("secondLoadData.php", {data : data}, success = renderSecond);
 }
 
