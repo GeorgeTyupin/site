@@ -95,9 +95,33 @@ function newLesson() {
 
 /* 
 ===================================================================================================================
-                                         Рендер странички 
+                                         Рендер странички
 ===================================================================================================================
 */
+//Создание превью класса
+function createMinClass(name){
+    $('.prev').append('<div class="roll_class"></div>');
+    temp = $('.roll_class');
+    temp = temp[temp.length - 1];
+    $(temp).append('<div class="row"></div>');
+    $(temp).append('<div class="class_content row"></div>');
+    sub_temp = $(temp).children()[0];
+    $(sub_temp).append('<div class="triangle-right button"></div>');
+    $(sub_temp).append(`<input type="text" class="class_number" value=${name}>`);
+    $(sub_temp).append('<button  class="submit" onclick="saveClass()">Сохранить</button>');
+}
+
+//Создание самого расписания уроков
+function createContentRasp(wrapper, response, counter, temp){
+    $(wrapper).append('<div class="col-10 rasp"><div class="triangle-right_2 button"></div></div>');
+    console.log(response['week'][counter - 1]['lesson']);
+    response['week'][counter - 1]['lesson'].forEach(elem => {
+        //if(temp != response['week'][counter - 1]['name']) continue;
+        $($(wrapper).children()[1]).append(`<input type="text" name="" id="" class="less" value=${elem}>`)
+        console.log('привет')
+    });
+}
+
 //первый рендер странички превью классов
 function renderFirst(response){
     console.log("рендер");
@@ -118,29 +142,23 @@ function renderFirst(response){
     $(".triangle-right").bind('click', chekingOpenClass);
 }
 
-//Создание превью класса
-function createMinClass(name){
-    $('.prev').append('<div class="roll_class"></div>');
-    temp = $('.roll_class');
-    temp = temp[temp.length - 1];
-    $(temp).append('<div class="row"></div>');
-    $(temp).append('<div class="class_content row"></div>');
-    sub_temp = $(temp).children()[0];
-    $(sub_temp).append('<div class="triangle-right button"></div>');
-    $(sub_temp).append(`<input type="text" class="class_number" value=${name}>`);
-    $(sub_temp).append('<button  class="submit" onclick="saveClass()">Сохранить</button>');
-}
-
 //рендеринг расписания
 function renderSecond(response){
     response = JSON.parse(response);
     if(!response){
         return
     }
-    class_rasp = $(`input[value=${response['name']}]`).parent().parent();  
-    days.forEach(elem => {
-        console.log(elem)
-        $($(class_rasp).children()[1]).append(`<div class="col-2 days">${elem}</div>`);
+    console.log(response)
+    class_rasp = $(`input[value=${response['name']}]`).parent().parent(); 
+    i = 0;
+    wrapper = $(class_rasp).children()[1];
+    response['week'].forEach(elem => {
+        temp = response['week'][i]['name'];
+        i = i + 1;
+        //отрисовка названия дней недели
+        $(wrapper).append(`<div class="col-2 days">${temp}</div>`);
+        //переход к функции для самого расписания уроков
+        createContentRasp(wrapper, response, i, temp);
     });
     //$($(class_rasp).children()[1]).append('<div class="col-2 days">Понедельник</div>');
     }
@@ -167,9 +185,10 @@ function chekingOpenClass(event) {
 
 
 
-/*===================================================================================================================
+/*=================================================================================================================
                                          Работа с сервером 
-===================================================================================================================*/
+===================================================================================================================
+*/
 //собираем данные и формируем массив для отправки на сервер
 function saveClass() {
     contain = event.target.parentNode.parentNode;
