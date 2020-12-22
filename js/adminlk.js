@@ -252,4 +252,4 @@ function main() {
     newLesson();   
 }
  
-main();
+main(); 
