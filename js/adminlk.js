@@ -95,7 +95,7 @@ function newLesson() {
 
 /* 
 ===================================================================================================================
-                                         Рендер страничкис
+                                         Рендер странички
 ===================================================================================================================
 */
 //Создание превью класса
@@ -112,12 +112,13 @@ function createMinClass(name){
 }
 
 //Создание самого расписания уроков
-function createContentRasp(wrapper, response, counter, temp){
+function createContentRasp(wrapper, response, temp){
     $(wrapper).append('<div class="col-10 rasp"><div class="triangle-right_2 button"></div></div>');
-    console.log(response['week'][counter - 1]['lesson']);
-    response['week'][counter - 1]['lesson'].forEach(elem => {
+    response['lesson'].forEach(elem => {
         //if(temp != response['week'][counter - 1]['name']) continue;
-        $($(wrapper).children()[1]).append(`<input type="text" name="" id="" class="less" value=${elem}>`)
+        child = $(wrapper).children();
+        child = child[child.length - 1];
+        $(child).append(`<input type="text" class="less" value=${elem}>`);
         console.log('привет')
     });
 }
@@ -150,15 +151,15 @@ function renderSecond(response){
     }
     console.log(response)
     class_rasp = $(`input[value=${response['name']}]`).parent().parent(); 
-    i = 0;
     wrapper = $(class_rasp).children()[1];
+    console.log(wrapper)
+    i = 0
     response['week'].forEach(elem => {
-        temp = response['week'][i]['name'];
-        i = i + 1;
+        console.log(elem)
         //отрисовка названия дней недели
-        $(wrapper).append(`<div class="col-2 days">${temp}</div>`);
+        $(wrapper).append(`<div class="col-2 days">${elem['name']}</div>`);
         //переход к функции для самого расписания уроков
-        createContentRasp(wrapper, response, i, temp);
+        createContentRasp(wrapper, elem, temp);
     });
     //$($(class_rasp).children()[1]).append('<div class="col-2 days">Понедельник</div>');
     }
@@ -252,4 +253,4 @@ function main() {
     newLesson();   
 }
  
-main();
+main(); 
