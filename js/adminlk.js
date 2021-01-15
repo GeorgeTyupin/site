@@ -123,6 +123,7 @@ function createContentRasp(wrapper, response, temp){
     });
 }
 
+
 //первый рендер странички превью классов
 function renderFirst(response){
     console.log("рендер");
