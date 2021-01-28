@@ -18,13 +18,6 @@
 	padding-right: 20px;
 }
 
-.col {
-    
-    width: 100px;
-    height: 100px;
-    
-}
-
 .indent_1 {
 	padding-top: 40px;
 }
@@ -93,10 +86,6 @@
 	padding-left: 25px;
 }
 
-.menu {
-	width: 215.89px;
-	min-height: 100%;
-	background: #7109AA;
 }
 
 body {
@@ -115,7 +104,7 @@ body {
 }
 .menu {
     width: 100%;
-    min-height: 100vh;
+    min-height: 100%;
     background: #7109AA;
     padding-top: 20px;
 }
@@ -220,4 +209,9 @@ body {
     background: #7109AA;
     border-radius: 100%;
     border: none;
+}
+
+.content {
+    min-height: 100vh;
+    height: 100%;
 }

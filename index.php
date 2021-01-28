@@ -30,8 +30,9 @@
             include('templates/registration.php');
         }elseif ($rules == 'admin') {
             include('templates/adminlk.php');
-        }
-        else {
+        }elseif ($rules == 'teacher') {
+            include('templates/teacherlk.php');
+        }else {
             include('templates/table.php');
         }
     ?>

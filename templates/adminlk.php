@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<div class="row">
+<div class="row content">
 
     <div class="col-1">
         <div class="menu">
